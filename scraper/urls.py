@@ -17,4 +17,7 @@ from django.urls import path
 from scraper import views
 
 urlpatterns = [
+    path('get_all_products/', views.get_all_products),
+    path('get_all_categories/', views.get_all_categories),
+    path('fetch_product/', views.fetch_product),
 ]
