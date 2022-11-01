@@ -39,8 +39,6 @@ def scrape_data(product_url: str, product: Product = None):
         rating = soup.select('._3LWZlK')
         product.rating = rating[0].text if rating else 0
 
-        print(product)
-
         product.save()
 
         sizes = soup.find_all('a', attrs={'class': '_1fGeJ5 _2UVyXR _31hAvz'})
@@ -51,7 +49,7 @@ def scrape_data(product_url: str, product: Product = None):
         SMALL_IMAGE_NUM, LARGE_IMAGE_NUM = '128', '832'
 
         if not images:
-            images = soup.find_all('img', attrs={'_396cs4 _2amPTt _3qGmMb  _3exPp9'})
+            images = soup.find_all('img', attrs={'class':'_396cs4 _2amPTt _3qGmMb _3exPp9'})
 
         for image in images:
             ProductImage.objects.get_or_create(image_url=image['src'].replace(SMALL_IMAGE_NUM, LARGE_IMAGE_NUM), product=product)
