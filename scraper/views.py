@@ -49,6 +49,10 @@ def scrape_data(product_url: str, product: Product = None):
 
         images = soup.find_all('img', attrs={'class': 'q6DClP'})
         SMALL_IMAGE_NUM, LARGE_IMAGE_NUM = '128', '832'
+
+        if not images:
+            images = soup.find_all('img', attrs={'_396cs4 _2amPTt _3qGmMb  _3exPp9'})
+
         for image in images:
             ProductImage.objects.get_or_create(image_url=image['src'].replace(SMALL_IMAGE_NUM, LARGE_IMAGE_NUM), product=product)
 
