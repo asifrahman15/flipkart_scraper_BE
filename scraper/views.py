@@ -95,7 +95,7 @@ def get_all_products(request):
     for product in products.filter(updated_on__lt=timezone.now() - timedelta(days=7)):
         scrape_data(product.product_url, product)
 
-    return Response(ProductSerializer(instance=products, many=True).data, status=200)
+    return Response({"data": ProductSerializer(instance=products, many=True).data, "message": "The List of Products Fetched Successfuly the data are precise to 1 week."}, status=200)
 
 
 @api_view(['GET'])
